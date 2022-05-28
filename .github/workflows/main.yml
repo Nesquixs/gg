@@ -1,90 +1,9 @@
-$ bash t.sh
-+ rm -rf dist testpkg setup.py
-+ cat
-+ mkdir testpkg
-+ touch testpkg/__init__.py
-+ echo 'print("hello hello world")'
-+ python3 -m compileall -b testpkg/mod.py
-Compiling 'testpkg/mod.py'...
-+ rm testpkg/mod.py
-+ python3 setup.py sdist bdist_wheel
-running sdist
-running egg_info
-writing foo.egg-info/PKG-INFO
-writing dependency_links to foo.egg-info/dependency_links.txt
-writing top-level names to foo.egg-info/top_level.txt
-reading manifest file 'foo.egg-info/SOURCES.txt'
-writing manifest file 'foo.egg-info/SOURCES.txt'
-warning: sdist: standard file not found: should have one of README, README.rst, README.txt, README.md
-
-running check
-warning: check: missing required meta-data: url
-
-warning: check: missing meta-data: either (author and author_email) or (maintainer and maintainer_email) must be supplied
-
-creating foo-1
-creating foo-1/foo.egg-info
-creating foo-1/testpkg
-copying files to foo-1...
-copying setup.py -> foo-1
-copying foo.egg-info/PKG-INFO -> foo-1/foo.egg-info
-copying foo.egg-info/SOURCES.txt -> foo-1/foo.egg-info
-copying foo.egg-info/dependency_links.txt -> foo-1/foo.egg-info
-copying foo.egg-info/top_level.txt -> foo-1/foo.egg-info
-copying testpkg/__init__.py -> foo-1/testpkg
-copying testpkg/mod.pyc -> foo-1/testpkg
-Writing foo-1/setup.cfg
-creating dist
-Creating tar archive
-removing 'foo-1' (and everything under it)
-running bdist_wheel
-running build
-running build_py
-copying testpkg/__init__.py -> build/lib/testpkg
-copying testpkg/mod.pyc -> build/lib/testpkg
-installing to build/bdist.linux-x86_64/wheel
-running install
-running install_lib
-creating build/bdist.linux-x86_64/wheel
-creating build/bdist.linux-x86_64/wheel/testpkg
-copying build/lib/testpkg/__init__.py -> build/bdist.linux-x86_64/wheel/testpkg
-copying build/lib/testpkg/mod.pyc -> build/bdist.linux-x86_64/wheel/testpkg
-running install_egg_info
-Copying foo.egg-info to build/bdist.linux-x86_64/wheel/foo-1-py3.8.egg-info
-running install_scripts
-creating build/bdist.linux-x86_64/wheel/foo-1.dist-info/WHEEL
-creating 'dist/foo-1-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
-adding 'testpkg/__init__.py'
-adding 'testpkg/mod.pyc'
-adding 'foo-1.dist-info/METADATA'
-adding 'foo-1.dist-info/WHEEL'
-adding 'foo-1.dist-info/top_level.txt'
-adding 'foo-1.dist-info/RECORD'
-removing build/bdist.linux-x86_64/wheel
-+ tar --list -f dist/foo-1.tar.gz
-foo-1/
-foo-1/PKG-INFO
-foo-1/foo.egg-info/
-foo-1/foo.egg-info/PKG-INFO
-foo-1/foo.egg-info/SOURCES.txt
-foo-1/foo.egg-info/dependency_links.txt
-foo-1/foo.egg-info/top_level.txt
-foo-1/setup.cfg
-foo-1/setup.py
-foo-1/testpkg/
-foo-1/testpkg/__init__.py
-foo-1/testpkg/mod.pyc
-+ unzip -l dist/foo-1-py3-none-any.whl
-Archive:  dist/foo-1-py3-none-any.whl
-  Length      Date    Time    Name
----------  ---------- -----   ----
-        0  2021-02-17 22:27   testpkg/__init__.py
-      136  2021-02-17 22:27   testpkg/mod.pyc
-      163  2021-02-17 22:28   foo-1.dist-info/METADATA
-       92  2021-02-17 22:28   foo-1.dist-info/WHEEL
-        8  2021-02-17 22:27   foo-1.dist-info/top_level.txt
-      408  2021-02-17 22:28   foo-1.dist-info/RECORD
----------                     -------
-      807                     6 files
-
-
+$ mkdir t
+$ cd t
+$ virtualenv venv
+...
+$ . venv/bin/activate
+$ pip install ../dist/foo-1-py3-none-any.whl
+...
+$ python3 -c 'import testpkg.mod'
+hello hello world
