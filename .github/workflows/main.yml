@@ -87,12 +87,4 @@ Archive:  dist/foo-1-py3-none-any.whl
 ---------                     -------
       807                     6 files
 
-$ mkdir t
-$ cd t
-$ virtualenv venv
-...
-$ . venv/bin/activate
-$ pip install ../dist/foo-1-py3-none-any.whl
-...
-$ python3 -c 'import testpkg.mod'
-hello hello world
+
